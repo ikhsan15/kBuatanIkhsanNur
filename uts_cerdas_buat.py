@@ -49,7 +49,7 @@ bin_width = 10
 kelompok_interval = range(0,100 + bin_width,bin_width)
 plot.hist(age, kelompok_interval)
 
-print("%.0f%%" % (100 * 1/3))
+# print("%.0f%%" % (100 * 1/3))
 
 """No. 4"""
 
@@ -62,41 +62,13 @@ pubtran = [
         0,0,5,0,30,0,0,0,0,0,
         10,0,100,0,5,0,0,0,10,0,
         0,25,25,55,15,0,100,30,50,0,
-        0,
+        0
 ]
 
 x = numpy.std(pubtran)
 print(x)
 
-import numpy as np
-import pandas as pd
-from matplotlib import pyplot as plt
-# from sklearn.linear_model import LinearRegressiondf 
-from sklearn.linear_model import LinearRegression
-pd.DataFrame([
-              [151,63],[174,81],[138,56],[186,91],
-              [128,47],[136,57],[179,76],[163,72],
-              [152,62],[131,48]
-            ])
-
-df.columns = ['x', 'y']
-x_train = df['x'].values[:,np.newaxis]
-y_train = df['y'].valueslm = LinearRegression()
-lm.fit(x_train,y_train) 
-
-print('Coefficient : ' + str(lm.coef_))
-print('Intercept : ' + str(lm.intercept_))
-x_test = [[170],[171]] 
-lm.predict(x_test) 
-print(p)
-
-pb = lm.predict(x_train)
-dfc = pd.DataFrame({'x': df['x'],'y':pb})
-plt.scatter(df['x'],df['y'])
-plt.plot(dfc['x'],dfc['y'],color='red',linewidth=1)
-plt.xlabel('Tinggi dalam cm')
-plt.ylabel('Berat dalam Kg')
-plt.show()
+"""================================================================================================================================================================"""
 
 import numpy as np
 import pandas as pd
@@ -131,3 +103,99 @@ plt.plot(dfc['x'],dfc['y'],color='red',linewidth=1)
 plt.xlabel('Tinggi dalam cm')
 plt.ylabel('Berat dalam Kg')
 plt.show()
+
+import numpy as np
+import pandas as pd
+from matplotlib import pyplot as plt
+from sklearn.linear_model import LinearRegression
+from sklearn.metrics import mean_squared_error
+from sklearn import linear_model
+df = pd.DataFrame([
+                    [19,90],[19,10],[19,5],[20,0],[20,25],[21,0],[21,0],[21,5],[21,70],[21,0],
+                    [21,0],[22,70],[22,90],[22,50],[22,0],[22,0],[23,0],[23,0],[23,70],[24,0],
+                    [24,0],[24,0],[25,25],[26,100],[26,0],[26,5],[28,2],[28,0],[29,0],[31,100],
+                    [31,0],[31,0],[32,5],[34,0],[34,30],[37,0],[40,0],[43,0],[50,0],[52,0],
+                    [57,10],[19,0],[20,100],[21,0],[22,5],[22,0],[22,0],[22,50],[23,10],[24,0],
+                    [24,0],[24,25],[25,25],[25,55],[27,15],[29,0],[30,100],[30,30],[31,50],[32,0],
+                    [39,0]
+                  ])
+
+df.columns = ['x', 'y']
+x_train = df['x'].values[:, np.newaxis]
+y_train = df['y'].values
+lm.fit(x_train, y_train)
+
+pb = lm.predict(x_train)
+dfc = pd.DataFrame({'x': df['x'],'y':pb})
+plt.scatter(df['x'],df['y'])
+plt.plot(dfc['x'],dfc['y'],color='red',linewidth=1)
+plt.xlabel('Tinggi dalam cm')
+plt.ylabel('Berat dalam Kg')
+plt.show()
+
+# calculate the Pearson's correlation between two variables
+from numpy.random import randn
+from numpy.random import seed
+from scipy.stats import pearsonr
+from scipy.stats import spearmanr
+# seed random number generator
+# seed(1)
+# # prepare data
+# data1 = 20 * randn(1000) + 100
+# data2 = data1 + (10 * randn(1000) + 50)
+
+pubtran = [
+        90,10,5,0,25,0,0,5,70,0,
+        0,70,90,50,0,0,0,0,0,0,
+        0,0,25,100,0,5,2,0,0,100,
+        0,0,5,0,30,0,0,0,0,0,
+        10,0,100,0,5,0,0,0,10,0,
+        0,25,25,55,15,0,100,30,50,0,
+        0
+]
+age = [
+        19,19,19,20,20,21,21,21,21,21,
+        21,22,22,22,22,22,23,23,23,24,
+        24,24,25,26,26,26,28,28,29,31,
+        31,31,32,34,34,37,40,43,50,52,
+        57,19,20,21,22,22,22,22,23,24,
+        24,24,25,25,27,29,30,30,31,32,
+        39
+]
+
+# calculate Pearson's correlation
+corr1, _ = pearsonr(age, pubtran)
+print('Pearsons correlation: %.3f' % corr1)
+corr2, _ = spearmanr(age, pubtran)
+print('Spearmans correlation: %.3f' % corr2)
+
+import numpy as np
+import pandas as pd
+from matplotlib import pyplot as plt
+from sklearn.linear_model import LinearRegression
+from sklearn.metrics import mean_squared_error
+from sklearn import linear_model
+df = pd.DataFrame([
+                    [90,70],[10,35],[5,35],[0,60],[25,75],[0,20],[0,60],[5,100],[70,75],[0,40],
+                    [0,60],[70,80],[90,79],[50,80],[0,20],[0,35],[0,20],[0,15],[0,50],[0,99],
+                    [0,50],[0,30],[25,80],[100,80],[0,70],[5,40],[2,25],[0,70],[0,75],[100,60],
+                    [0,75],[0,80],[5,35],[0,60],[30,50],[0,50],[0,75],[0,20],[0,40],[0,0],
+                    [10,50],[0,30],[100,45],[0,90],[5,25],[0,50],[0,20],[50,80],[10,40],[0,35],
+                    [0,0],[25,70],[25,25],[55,90],[15,50],[0,50],[100,65],[30,0],[50,10],[0,60],
+                    [0,25]
+                  ])
+
+df.columns = ['x', 'y']
+x_train = df['x'].values[:, np.newaxis]
+y_train = df['y'].values
+lm.fit(x_train, y_train)
+
+pb = lm.predict(x_train)
+dfc = pd.DataFrame({'x': df['x'],'y':pb})
+plt.scatter(df['x'],df['y'])
+plt.plot(dfc['x'],dfc['y'],color='red',linewidth=1)
+plt.xlabel('Tinggi dalam cm')
+plt.ylabel('Berat dalam Kg')
+plt.show()
+
+"""# New Section"""
